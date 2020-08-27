@@ -58,7 +58,7 @@ Later in your journey, you'll deploy more network related resources to this AWS 
 |**`AWS SSO email`**|Use the email address of your **`AWS Control Tower Admin`** user in AWS SSO.  As long as you reference an existing AWS SSO user, the Account Factory will not create another AWS SSO user for this new AWS account.|
 |**`AWS SSO First Name`**|**`AWS Control Tower`**|
 |**`AWS SSO Last Name`**|**`Admin`**|
-|**`Organizational unit`**|Select **`infrastructure-prod`**.|
+|**`Organizational unit`**|Select **`infrastructure_prod`**.|
 
 9. Select **`Enroll Account`**.
 
@@ -209,7 +209,7 @@ Review the newly created VPC and associated resources.
 9. Select the log group associated with the VPC Flow Logs. For example, `/infra/dev-shared/flowlogs`.
 10. Explore the log streams. You should see a log stream for each Elastic Network Interface (ENI) used in the VPC. For example, each NAT Gateway has one ENI. Each entry in a log stream represents a the source, destination, and other overall information about the network traffic flowing through the ENI.
 
-## 9. Share Private Subnets With Development OUs
+## 9. Share Private Subnets With Development OUs {#share-dev-subnets}
 
 Now that the centrally managed development VPC has been provisioned, your next step is to share the private subnets with all of the AWS accounts that will become part of the development OUs that you created earlier.  
 
@@ -228,14 +228,14 @@ This is a one-time operation.
 
 While you're in the master AWS account, obtain and record the resource ID of each of the two development OUs:
 
-* **`infrastructure-dev`**
-* **`workloads-dev`**
+* **`infrastructure_dev`**
+* **`workloads_dev`**
 
 1. Navigate to **`AWS Control Tower`**.
 2. Select **`Organizational units`**.
-3. Select **`infrastructure-dev`**.
+3. Select **`infrastructure_dev`**.
 4. Copy the **`ID`** of the form `ou-szfb-rixl8jqc` (example) so that you can refer to it in the next step.
-5. Perform the same task for the **`workloads-dev`** OU to make a copy of its OU ID.
+5. Perform the same task for the **`workloads_dev`** OU to make a copy of its OU ID.
 
 ### Create a Resource Share
 
@@ -249,9 +249,9 @@ While you're in the master AWS account, obtain and record the resource ID of eac
 8. Under **`Resources`**, by default, the subnets that were just provisioned should be listed.
 9. Select only the private subnets.
 10. Under **`Principals`**, uncheck **`Allow external accounts`** given that we're sharing the subnets only with other AWS accounts within this AWS organization.
-11. In the search field, copy the organization ID of the **`infrastructure-dev`** OU.
+11. In the search field, copy the organization ID of the **`infrastructure_dev`** OU.
 12. Select the matched OU.
-13. Perform the same task for the **`workloads-dev`** OU.
+13. Perform the same task for the **`workloads_dev`** OU.
 14. Select **`Create resource share`**.
 
 {{% notice info %}}
